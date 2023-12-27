@@ -112,7 +112,7 @@ return (<>
                 isMobile && "left-0 w-full"
             )}>
             <nav className="bg-transparent px-3 py-2 w-full">
-                {isCollapsed && <MenuIcon className="h-6 w-6 text-muted-foreground" />}
+                {isCollapsed && <MenuIcon onClick={resetWidth} className="h-6 w-6 text-muted-foreground" />}
             </nav>
         </div>
     </>
