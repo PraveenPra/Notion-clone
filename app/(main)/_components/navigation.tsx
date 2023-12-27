@@ -61,6 +61,19 @@ const Navigation = () => {
         }
     }
 
+    const collapse = ()=>{
+        if(sidebarRef.current && navbarRef.current){
+            setIsCollapsed(true)
+            setIsResetting(true)
+
+            sidebarRef.current.style.width = "0";
+            navbarRef.current.style.setProperty("width", "100%");
+            navbarRef.current.style.setProperty("left", "0");
+
+            setTimeout(()=> setIsResetting(false),300);
+            
+        }
+    }
 return (<>
         <aside
             ref={sidebarRef}
@@ -71,6 +84,7 @@ return (<>
             )}>
 
             <div role="button"
+            onClick={collapse}
                 className={cn(
                     "h-6 w-6 text-muted-foreground rousm hover:bg-neutral-300 dark:h bgn600 absolute top-3 right-2 opacity-0 group-hover/sidebar:opacity-100 transition",
                     isMobile && "opacity-100"
