@@ -1,6 +1,6 @@
 "use client"
 
-import { useUser } from "@clerk/clerk-react";
+import { SignOutButton, useUser } from "@clerk/clerk-react";
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import {
     // DropdownMenu, DropdownMenuContent, DropdownMenuTrigger
@@ -34,8 +34,8 @@ const UserItem = () => {
                     <ChevronsLeftRight className="rotate-90 ml-2 text-muted-foreground h-4 w-4" />
                 </div>
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
-                <div className="flex flex-col space-y-4 p-2">
+            <DropdownMenuContent className="bg-white">
+                <div className="flex flex-col space-y-4 p-2 ">
                     <p className="text-xs font-medium leading-none text-muted-foreground">
                         {user?.emailAddresses[0].emailAddress}
                     </p>
@@ -56,7 +56,12 @@ const UserItem = () => {
                     </div>
                 </div>
 
-
+<DropdownMenuSeparator/>
+<DropdownMenuItem asChild className="w-full cursor-pointer text-muted-foreground">
+    <SignOutButton>
+        Log out
+    </SignOutButton>
+</DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
 
