@@ -1,14 +1,14 @@
 "use client"
 
 import { cn } from "@/lib/utils";
-import { ChevronsLeft, Menu, MenuIcon, PlusCircle } from "lucide-react";
+import { ChevronsLeft, Menu, MenuIcon, PlusCircle, Search, Settings } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import UserItem from "./user-item";
 import { useMutation, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import {Item} from "./item";
+import { Item } from "./item";
 import { toast } from "sonner";
 
 const Navigation = () => {
@@ -24,19 +24,19 @@ const Navigation = () => {
     const [isResetting, setIsResetting] = useState(false)
     const [isCollapsed, setIsCollapsed] = useState(isMobile)
 
-    useEffect(()=>{
-        if(isMobile){
+    useEffect(() => {
+        if (isMobile) {
             collapse();
-        }else{
+        } else {
             resetWidth();
         }
-    },[isMobile])
+    }, [isMobile])
 
-    useEffect(()=>{
-        if(isMobile){
+    useEffect(() => {
+        if (isMobile) {
             collapse();
         }
-    },[pathname,isMobile])
+    }, [pathname, isMobile])
 
     const handleMouseDown = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         event.preventDefault()
@@ -62,15 +62,15 @@ const Navigation = () => {
         }
     }
 
-    const handleMouseUp = ()=>{
+    const handleMouseUp = () => {
         isResizingRef.current = false;
-        document.removeEventListener("mousemove",handleMouseMove);
-        document.removeEventListener("mouseup",handleMouseUp);
+        document.removeEventListener("mousemove", handleMouseMove);
+        document.removeEventListener("mouseup", handleMouseUp);
 
     }
 
-    const resetWidth = ()=>{
-        if(sidebarRef.current && navbarRef.current){
+    const resetWidth = () => {
+        if (sidebarRef.current && navbarRef.current) {
             setIsCollapsed(false)
             setIsResetting(true)
 
@@ -78,13 +78,13 @@ const Navigation = () => {
             navbarRef.current.style.setProperty("width", isMobile ? "0" : "calc(100% - 240px)");
             navbarRef.current.style.setProperty("left", isMobile ? "100%" : "240px");
 
-            setTimeout(()=> setIsResetting(false),300);
-            
+            setTimeout(() => setIsResetting(false), 300);
+
         }
     }
 
-    const collapse = ()=>{
-        if(sidebarRef.current && navbarRef.current){
+    const collapse = () => {
+        if (sidebarRef.current && navbarRef.current) {
             setIsCollapsed(true)
             setIsResetting(true)
 
@@ -92,21 +92,21 @@ const Navigation = () => {
             navbarRef.current.style.setProperty("width", "100%");
             navbarRef.current.style.setProperty("left", "0");
 
-            setTimeout(()=> setIsResetting(false),300);
-            
+            setTimeout(() => setIsResetting(false), 300);
+
         }
     }
 
-    const handleCreate =()=>{
-        const promise = create({title:"Untitled"})
+    const handleCreate = () => {
+        const promise = create({ title: "Untitled" })
 
-        toast.promise(promise,{
-            loading:"Creating a new note...",
-            success:"New note created!",
-            error:"Failed to create a new note."
+        toast.promise(promise, {
+            loading: "Creating a new note...",
+            success: "New note created!",
+            error: "Failed to create a new note."
         })
     }
-return (<>
+    return (<>
         <aside
             ref={sidebarRef}
             className={cn(
@@ -116,7 +116,7 @@ return (<>
             )}>
 
             <div role="button"
-            onClick={collapse}
+                onClick={collapse}
                 className={cn(
                     "h-6 w-6 text-muted-foreground rousm hover:bg-neutral-300 dark:h bgn600 absolute top-3 right-2 opacity-0 group-hover/sidebar:opacity-100 transition",
                     isMobile && "opacity-100"
@@ -124,23 +124,37 @@ return (<>
                 <ChevronsLeft className="h-6 w-6" />
             </div>
             <div>
-               <UserItem/>
-               <Item onClick={handleCreate} label="New page"
-               icon={PlusCircle}/>
+                <UserItem />
+
+                <Item
+                    label="Search"
+                    icon={Search}
+                    isSearch
+                    onClick={() => { }}
+                />
+
+                <Item
+                    label="Settings"
+                    icon={Settings}
+                    onClick={() => { }}
+                />
+
+                <Item onClick={handleCreate} label="New page"
+                    icon={PlusCircle} />
 
             </div>
 
             <div className="mt-4">
                 <p>
-                    {documents?.map((document)=>(<p key={document._id}>
+                    {documents?.map((document) => (<p key={document._id}>
                         {document.title}
-                        </p>))}
+                    </p>))}
                 </p>
             </div>
 
             <div
                 onMouseDown={handleMouseDown}
-                    onClick={resetWidth}
+                onClick={resetWidth}
                 className="opacity-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize absolute h-full w-1 bg-primary/10 right-0 top-0" />
 
         </aside>
