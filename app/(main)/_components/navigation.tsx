@@ -15,7 +15,7 @@ const Navigation = () => {
     const pathname = usePathname(); //to use to keep sidebar clone unless user clicks on a document
     const isMobile = useMediaQuery("(max-width: 768px)");//we use this for dragging sidebar for collapsing. its complex to define breakpoints without this hook/trick
 
-    const documents = useQuery(api.documents.get);
+    // const documents = useQuery(api.documents.get);
     const create = useMutation(api.documents.create)
 
     const isResizingRef = useRef(false)
@@ -118,7 +118,7 @@ const Navigation = () => {
             <div role="button"
                 onClick={collapse}
                 className={cn(
-                    "h-6 w-6 text-muted-foreground rousm hover:bg-neutral-300 dark:h bgn600 absolute top-3 right-2 opacity-0 group-hover/sidebar:opacity-100 transition",
+                    "h-6 w-6 text-muted-foreground rounded-sm hover:bg-neutral-300 dark:bg-neutral-600 absolute top-3 right-2 opacity-0 group-hover/sidebar:opacity-100 transition",
                     isMobile && "opacity-100"
                 )}>
                 <ChevronsLeft className="h-6 w-6" />
@@ -145,11 +145,11 @@ const Navigation = () => {
             </div>
 
             <div className="mt-4">
-                <p>
+                {/* <p>
                     {documents?.map((document) => (<p key={document._id}>
                         {document.title}
                     </p>))}
-                </p>
+                </p> */}
             </div>
 
             <div
