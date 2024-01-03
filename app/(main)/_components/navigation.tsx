@@ -10,6 +10,7 @@ import { useMutation, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Item } from "./item";
 import { toast } from "sonner";
+import { DocumentList } from "./document-list";
 
 const Navigation = () => {
     const pathname = usePathname(); //to use to keep sidebar clone unless user clicks on a document
@@ -145,6 +146,7 @@ const Navigation = () => {
             </div>
 
             <div className="mt-4">
+                <DocumentList />
                 {/* <p>
                     {documents?.map((document) => (<p key={document._id}>
                         {document.title}
