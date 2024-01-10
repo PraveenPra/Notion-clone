@@ -1,7 +1,7 @@
 "use client"
 
 import { cn } from "@/lib/utils";
-import { ChevronsLeft, Menu, MenuIcon, PlusCircle, Search, Settings } from "lucide-react";
+import { ChevronsLeft, Menu, MenuIcon, Plus, PlusCircle, Search, Settings } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
@@ -147,6 +147,11 @@ const Navigation = () => {
 
             <div className="mt-4">
                 <DocumentList />
+                <Item
+                onClick={handleCreate}
+                icon={Plus}
+                label="Add a page"
+                />
                 {/* <p>
                     {documents?.map((document) => (<p key={document._id}>
                         {document.title}
