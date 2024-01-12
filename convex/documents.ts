@@ -194,7 +194,8 @@ export const restore = mutation({
 
         recursiveRestore(args.id);
 
-        return document;
+        return document
+        ;
     }
 })
 
