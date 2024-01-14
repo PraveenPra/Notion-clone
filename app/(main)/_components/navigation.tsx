@@ -13,11 +13,13 @@ import { toast } from "sonner";
 import { DocumentList } from "./document-list";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { TrashBox } from "./trash-box";
+import { useSearch } from "@/hooks/use-search";
 
 const Navigation = () => {
     const pathname = usePathname(); //to use to keep sidebar clone unless user clicks on a document
     const isMobile = useMediaQuery("(max-width: 768px)");//we use this for dragging sidebar for collapsing. its complex to define breakpoints without this hook/trick
 
+    const search = useSearch()
     // const documents = useQuery(api.documents.get);
     const create = useMutation(api.documents.create)
 
@@ -133,7 +135,7 @@ const Navigation = () => {
                     label="Search"
                     icon={Search}
                     isSearch
-                    onClick={() => { }}
+                    onClick={search.onOpen}
                 />
 
                 <Item
