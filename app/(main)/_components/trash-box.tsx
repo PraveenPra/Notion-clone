@@ -95,12 +95,12 @@ return(
 <div  
 role="button"
     onClick={(e)=>onRestore(e,document._id)}
-    className="p-2 rounded-sm hover:bg-neutral-200">
+    className="p-2 rounded-sm hover:bg-neutral-200 dark:hover:bg-neutral-600">
 <Undo className="h-4 w-4 text-muted-foreground"/>
 </div>
 
 <ConfirmModal onConfirm={()=>onRemove(document._id)}>
-<div className="rounded-sm p-2 hover:bg-neutral-200"
+<div className="rounded-sm p-2 hover:bg-neutral-200 dark:hover:bg-neutral-600"
 role="button">
     <Trash className="h-4 w4 text-muted-foreground"/>
 </div>
