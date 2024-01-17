@@ -5,6 +5,7 @@ import { Id } from "@/convex/_generated/dataModel";
 import { useQuery } from "convex/react";
 import { MenuIcon } from "lucide-react";
 import { useParams } from "next/navigation";
+import { Title } from "./title";
 
 interface NavbarProps{
     isCollapsed:boolean;
@@ -38,7 +39,7 @@ export const Navbar = (
           />
         )}
         <div className="flex items-center justify-between w-full">
-          navbar
+        <Title initialData={document} />
         </div>
       </nav>
     </> );
